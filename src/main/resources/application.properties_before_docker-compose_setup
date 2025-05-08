@@ -1,0 +1,13 @@
+spring.application.name=springboot-crud-master
+
+# While creating docker compose file for MySQL
+spring.datasource.url=jdbc:mysql://localhost:3306/springbootdb?useSSL=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=root
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# Spring Boot CRUD REST API with MySQL and Java Record DTO: Step-by-Step Guide
+# https://medium.com/@rameshfadatare/spring-boot-crud-rest-api-with-mysql-and-java-record-dto-step-by-step-guide-4096b9bd5cfe
+
+#

@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  springboot-app:
+    container_name: spring-app    # for scaling 'container_name: spring-app' its disabled bcz it create 5 instances randomly.
+    image: springboot-app
+    restart: always              # while building images if it fail, it start building again. its optional.
+    build: .
+    ports:
+      - 8080:8080    # for scaling, write port '- 8080-8999:8080' like this, for allocating port to 5 different instances
+    environment:
+      MYSQL_HOST: mysql_db             # its container_name of mysql service i.e. mysql_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_PORT: 3306                 # always specify port as container port
+      LOCAL_HOST: localhost
+  mysql:
+    container_name: mysql_db
+    image: mysql:latest
+    volumes:                         # It is used to persit data, incase when our mysql image lost/deleted. local drive path:mysql path
+      - D:/Tutorial/Java/Int_Workspace/ZulfiPrac/db:/var/lib/mysql
+    ports:
+      - 3307:3306             # port 3306 is exposed to 3307.3306 is internal port. Host port is 3307 because local we have used 3306.
+    environment:              # and docker container port is 3306.
+      MYSQL_DATABASE: springbootdb
+      MYSQL_ROOT_PASSWORD: root
